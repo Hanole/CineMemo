@@ -56,10 +56,54 @@ header > nav {
   background-color: lightgray;
   border-radius: 12px 12px 0 0;
   margin: 4px;
+  overflow: hidden;
 }
 
-.movie-card a {
+.movie-card_poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+a {
   display: block;
   text-decoration: none;
   color: inherit;
+}
+
+.movie-details {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.movie-details_poster {
+  aspect-ratio: 5 / 7;
+  max-width: 450px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+
+.movie-details_poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.movie-details_info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.movie-details_meta {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
