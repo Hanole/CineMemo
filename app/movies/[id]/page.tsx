@@ -71,10 +71,13 @@ export default async function MovieDetails({ params }: MovieDetailsProps) {
       <div className="movie-details">
         <div className="movie-details_poster">
           {movie.poster_path ? (
-          <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={`Poster for ${movie.title}`} />
-        ) : (
-          <span>No poster available</span>
-        )}
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={`Poster for ${movie.title}`}
+            />
+          ) : (
+            <span>No poster available</span>
+          )}
         </div>
         <section className="movie-details_info">
           <h1>{movie.title}</h1>
