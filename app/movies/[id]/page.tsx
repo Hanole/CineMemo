@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 
 type MovieDetailsProps = {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{
+    returnTo?: string | string[];
+  }>;
 };
 
 type TMDBMovieDetails = {
@@ -30,8 +33,11 @@ type TMDBMovieDetails = {
   poster_path: string | null;
 };
 
-export default async function MovieDetails({ params }: MovieDetailsProps) {
+export default async function MovieDetails({ params, searchParams }: MovieDetailsProps) {
   const { id } = await params;
+  const { returnTo } = await searchParams;
+
+  const backHref = typeof returnTo === "string" && (returnTo === "/movies" || returnTo.startsWith("/movies?")) ? returnTo : "/movies";
 
   const token = process.env.TMDB_API_KEY;
 
@@ -39,6 +45,7 @@ export default async function MovieDetails({ params }: MovieDetailsProps) {
     throw new Error("API missing in .env.local");
   }
 
+  // hent filmdetaljer
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/${id}?language=en-US&append_to_response=credits`,
     {
@@ -49,6 +56,7 @@ export default async function MovieDetails({ params }: MovieDetailsProps) {
     },
   );
 
+  // 404-side hvis film ikke finnes
   if (response.status === 404) {
     notFound();
   }
@@ -59,15 +67,18 @@ export default async function MovieDetails({ params }: MovieDetailsProps) {
 
   const movie: TMDBMovieDetails = await response.json();
 
+
+  // finne regissøren i crew
   const directors = movie.credits.crew
     .filter((person) => person.job === "Director")
     .map((person) => person.name)
     .join(", ");
 
+  // begrense cast til 6 første
   const topCast = movie.credits.cast.slice(0, 6);
   return (
     <>
-      <Link href="/movies/">Go back to movies</Link>
+      <Link href={backHref} className="movie-details_goback">Go back to movies</Link>
       <div className="movie-details">
         <div className="movie-details_poster">
           {movie.poster_path ? (

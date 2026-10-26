@@ -6,7 +6,7 @@ export default function Navbar() {
         <header>
             <Link href="/">CineMemo</Link>
             <nav>
-                <Link href="/about">About us</Link>
+                <Link href="/about">About</Link>
                 <Link href="/movies">Explore movies</Link>
             </nav>
         </header>

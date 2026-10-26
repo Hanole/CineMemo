@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./responsive.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Roboto } from "next/font/google";

@@ -5,7 +5,7 @@ export default function Footer() {
     return (
         <footer>
                 <Link href="/">CineMemo</Link>
-                <Link href="/about">About us</Link>
+                <Link href="/about">About</Link>
         </footer>
     )
 }

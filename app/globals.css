@@ -1,8 +1,8 @@
-
 :root {
   --beige1: #C89666;
   --beige2: #E1B382;
 }
+
 * {
   margin: 0;
 }
@@ -19,21 +19,67 @@ body {
 
 main {
   flex-grow: 1;
-  padding: 2.5rem 4rem;
+  padding: 1rem 4rem;
 }
 
-header, footer {
+header,
+footer {
   background-image: linear-gradient(to right, var(--beige1), var(--beige2));
   display: flex;
   justify-content: space-between;
   gap: 1rem;
   padding: 1.5rem;
+  color: #12343B;
+  align-items: center;
 }
 
-header > nav {
-  display: inherit;
-  gap: 1rem;
+header>a:first-child,
+footer>a:first-child {
+  font-weight: 700;
+  font-size: 1.7rem;
 }
+
+header>nav,
+footer>nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+header>nav>a,
+footer>nav>a,
+footer>a:not(:first-child) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+
+  border: 2px solid #12343B;
+  border-radius: 8px;
+
+  color: #12343B;
+  background-color: transparent;
+  font-weight: 600;
+  text-align: center;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+header>nav>a:hover,
+footer>nav>a:hover,
+footer>a:not(:first-child):hover {
+  background-color: #12343B;
+  color: #fff;
+}
+
+
+/* /MOVIES */
 
 .movie-grid {
   display: grid;
@@ -45,10 +91,23 @@ header > nav {
   background-image: linear-gradient(to top, var(--beige1), var(--beige2));
   border-radius: 12px;
   color: #12343B;
+
+  transform: scale(1);
+  box-shadow: 0 0 0 0 rgba(143, 225, 130, 0);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.movie-card:hover,
+.movie-card:focus-within {
+  transform: scale(0.97);
+  box-shadow: 0 0 22px 4px rgba(196, 171, 109, 0.55);
 }
 
 .movie-card_predetail {
-    padding: 0.1rem 1rem 0.5rem 1rem;
+  padding: 0.1rem 1rem 0.5rem 1rem;
 }
 
 .movie-card_poster {
@@ -73,18 +132,41 @@ a {
   color: inherit;
 }
 
+/* MOVIEDETAILS */
+
+.movie-details_goback {
+
+  background-color: var(--beige2);
+color: #12343B;
+font-weight: 600;
+  margin-bottom: 1rem;
+  border: 2px solid var(--beige2);
+  border-radius: 20px 0 0 20px;
+  width: max-content;
+  padding: 0.5rem 1.25rem;
+
+    transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.movie-details_goback:hover {
+  background-color: #12343B;
+  color: #fff;
+}
+
 .movie-details {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 1.5rem;
-  margin-top: 2rem;
+  box-shadow: 0 0 22px 4px rgba(5, 5, 5, 0.55);
+  border-radius: 12px;
+  align-items: center;
 }
 
 .movie-details_poster {
   aspect-ratio: 5 / 7;
   max-width: 450px;
-  border-radius: 12px;
-  overflow: hidden;
 }
 
 
@@ -93,17 +175,223 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 12px 0 0 12px;
 }
 
 .movie-details_info {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
+  padding: 0 4rem;
+  margin-bottom: 3rem;
+
 }
 
 .movie-details_meta {
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
+
+}
+
+
+/* PAGINATION */
+
+.pagination-movies {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  gap: 2rem;
+}
+
+.pagination-movies>a,
+.pagination-movies>span {
+
+  text-align: center;
+  border: #E1B382 solid 4px;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  width: 100%;
+
+}
+
+.pagination-movies>a:hover,
+.pagination-movies>a:focus-visible {
+  background-color: var(--beige1);
+}
+
+.pagination-movies>span[aria-disabled="true"] {
+  background-color: var(--beige2);
+  color: #12343B;
+  opacity: 0.5;
+}
+
+.pagination-movies>a {
+  background-color: var(--beige2);
+  color: #12343B;
+}
+
+
+
+
+/* Homepage and aboutpage */
+
+.home-page-intro,
+.about-page {
+  max-width: 65ch;
+}
+
+.home-page-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.home-page-intro>a {
+  background-color: var(--beige2);
+  color: #12343B;
+  padding: 0.85rem 1.25rem;
+  border-radius: 8px;
+  border: 2px solid var(--beige2);
+  font-weight: 600;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.home-page-intro>a:hover {
+  background-color: #12343B;
+  color: #fff;
+}
+
+.about-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-page section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+
+
+/* FILTERS */
+
+.movie-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+
+  margin: 1.5rem 0 2rem;
+  padding: 1.5rem;
+
+  background-color: #12343B;
+  border: 2px solid var(--beige1);
+  border-radius: 12px;
+}
+
+
+.movie-filters_field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.movie-filters_search {
+  flex: 2 1 18rem;
+}
+
+.movie-filters label {
+  color: var(--beige2);
+  font-weight: 600;
+}
+
+
+.movie-filters input,
+.movie-filters select {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0.7rem 0.9rem;
+
+  font: inherit;
+  color: #12343B;
+  background-color: var(--beige2);
+
+  border: 2px solid var(--beige2);
+  border-radius: 8px;
+}
+
+.movie-filters input::placeholder {
+  color: #12343B;
+  opacity: 1;
+}
+
+.movie-filters select {
+  cursor: pointer;
+}
+
+
+.movie-filters_actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.movie-filters_actions button,
+.movie-filters_actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+
+  font: inherit;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+
+  border: 2px solid var(--beige2);
+  border-radius: 8px;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.movie-filters_actions button {
+  background-color: var(--beige2);
+  color: #12343B;
+}
+
+.movie-filters_actions a {
+  background-color: transparent;
+  color: var(--beige2);
+}
+
+.movie-filters_actions button:hover,
+.movie-filters_actions a:hover {
+  background-color: var(--beige1);
+  color: #12343B;
+}
+
+
+.movie-filters input:focus-visible,
+.movie-filters select:focus-visible,
+.movie-filters button:focus-visible,
+.movie-filters a:focus-visible {
+  outline: 3px solid var(--beige2);
+  outline-offset: 4px;
 }
